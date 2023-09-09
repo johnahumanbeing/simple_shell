@@ -13,6 +13,7 @@
  * nimeisave somewhere
  * don't worry about betty for now hiyo tunaeza fix later after code
  * yote inawork
+ * i will explain the concept then we will split the work
 */
 
 #define MAX_INPUT_LENGTH 1024
