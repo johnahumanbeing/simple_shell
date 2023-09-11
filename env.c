@@ -6,8 +6,11 @@
 #define MAX_ARGS 64
 #define MAX_PATH 1024
 
-char **environ;
-
+/**
+ * get_path - function that gets the full path of a command
+ * @cmd: the command
+ * Return: null
+ */
 char *get_path(char *cmd)
 {
 	char *path = getenv("PATH");
@@ -31,7 +34,7 @@ char *get_path(char *cmd)
 /**
  * print_env - function that prints the environment variables
  */
-print_env() void
+print_env()void
 {
 	char **env = environ;
 
@@ -42,6 +45,12 @@ print_env() void
 	}
 }
 
+/**
+ * exec_command - function that execues a command
+ * @cmd: the command
+ * @cmd_path: the path of the command
+ * @args: the arguments
+ */
 void exec_command(char *cmd, char *cmd_path, char *args[])
 {
 	int status;
@@ -65,22 +74,28 @@ void exec_command(char *cmd, char *cmd_path, char *args[])
 	free(cmd_path);
 }
 
+/**
+ * main - works on the eviron variable
+ * Return: nothing
+ */
 int main(void)
 {
+	char **environ;
+
 	char *line = NULL;
 	size_t line_size = 0;
 	char *args[MAX_ARGS];
-	
+
 	while (1)
 	{
 		printf("$ ");
 		fflush(stdout);
-		
+
 		if (getline(&line, &line_size, stdin) == -1)
 		{
 			break;
 		}
-		
+
 		int num_args = 0;
 		char *arg = strtok(line, " \n");
 
