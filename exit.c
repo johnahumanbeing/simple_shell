@@ -6,6 +6,11 @@
 #define MAX_ARGS 64
 #define MAX_PATH 1024
 
+/**
+ * get_path - gets the path of the command
+ * @cmd: the command
+ * Return: zero
+ */
 char *get_path(char *cmd)
 {
 	char *path = getenv("PATH");
@@ -27,6 +32,33 @@ char *get_path(char *cmd)
 	return (NULL);
 }
 
+/**
+ * exec_command - functions that executes a command
+ * @cmd: the command
+ * @cmd_path: the path of the command
+ * @args: the arguments
+ */
+void exec_command(char *cmd, char *cmd_path, char *args[])
+{
+	int status;
+	pid_t pid = fork();
+
+	if (pid == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
+	}
+	free(cmd_path);
+}
+
+/**
+ * main - the entry point
+ * Return: zero
+ */
 int main(void)
 {
 	char *line = NULL;
@@ -61,6 +93,7 @@ int main(void)
 		}
 
 		char *cmd = args[0];
+		char *cmd_path = get_path(cmd);
 
 		if (cmd_path == NULL)
 		{
@@ -68,28 +101,8 @@ int main(void)
 			continue;
 		}
 
-		pid_t pid = fork();
-
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-
-		else if (pid == 0)
-		{
-			execv(cmd_path, args);
-			perror("execv");
-			exit(EXIT_FAILURE);
-		}
-
-		else
-		{
-			wait(&status);
-		}
-		free(cmd_path);
+		exec_command(cmd, cmd_path, args);
 	}
 	free(line);
 	return (0);
 }
-
