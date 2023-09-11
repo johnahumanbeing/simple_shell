@@ -3,13 +3,11 @@
 #include <string.h>
 
 #define BUFFER_SIZE 1024
-/**
- * hii hapa ndioo number 2 hio shell 0.1+
- * hii utamake sum adjustments na umake comments
- * pia prototypes uta add kwa shell.h
- * sijui kama kuna anything else
- */
 
+/**
+ * main - the entry point
+ * Return: nothing
+ */
 int main(void)
 {
 	char *buffer;
