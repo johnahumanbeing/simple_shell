@@ -62,6 +62,28 @@ int exec_command(char *cmd_path, char *args[])
 }
 
 /**
+ * parse_line - function that parses the user input
+ *  into commands and arguments
+ *  @line: the input line
+ *  @args: the arguments
+ *  Return: number of arguments
+ */
+int parse_line(char *line, char *args[])
+{
+	int num_args = 0;
+	char *arg = strtok(line, " \n");
+
+	while (arg != NULL && num_args < MAX_ARGS - 1)
+	{
+		args[num_args++] arg;
+		arg = strtok(NULL, " \n");
+	}
+
+	args[num_args] = NULL;
+	return (num_args);
+}
+
+/**
  * main - the entry point
  * Return: zero
  */
@@ -82,16 +104,7 @@ int main(void)
 			break;
 		}
 
-		int num_args = 0;
-		char *arg = strtok(line, " \n");
-
-		while (arg != NULL && num_args < MAX_ARGS - 1)
-		{
-			args[num_args++] = arg;
-			arg = strtok(NULL, " \n");
-		}
-
-		args[num_args] = NULL;
+		int num_args = parse_line(line, args);
 
 		if (num_args == 0)
 		{
