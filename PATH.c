@@ -6,28 +6,13 @@
 #define MAX_ARGS 64
 #define MAX_PATH 1024
 
-char *get_path(char *cmd)
-{
-	char *path = getenv("PATH");
-	char *dir = strtok(path, ":");
-	char *full_path = malloc(MAX_PATH);
+char *get_path(char *cmd);
+void exec_command(char *cmd, char *cmd_path, char *args[]);
 
-	while (dir != NULL)
-	{
-		snprintf(full_path, MAX_PATH, "%s/%S", dir, cmd);
-
-		if (access(full_path, X_OK) == 0)
-		{
-			return (full_path);
-		}
-
-		dir = strtok(NULL, ":");
-	}
-
-	free(full_path);
-	return (NULL);
-}
-
+/**
+ * main - the entry point
+ * Return: zero
+ */
 int main(void)
 {
 	char *line = NULL;
@@ -70,25 +55,65 @@ int main(void)
 			continue;
 		}
 
-		pid_t pid = fork();
-
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			execv(cmd_path, args);
-			perror("execv");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			wait(&status);
-		}
+		exec_command(cmd, cmd_path, args);
 		free(cmd_path);
 	}
+
 	free(line);
 	return (0);
+}
+
+/**
+ * get_path - function that finds the full path of a command
+ * @cmd: the command
+ * Return: zero
+ */
+char *get_path(char *cmd)
+{
+	char *path = getenv("PATH");
+	char *dir = strtok(path, ":");
+	char *full_path = malloc(MAX_PATH);
+
+	while (dir != NULL)
+	{
+		snprintf(full_path, MAX_PATH, "%s/%s", dir, cmd);
+
+		if (access(full_path, X_OK) == 0)
+		{
+			return (full_path);
+		}
+
+		dir = strtok(NULL, ":");
+	}
+
+	free(full_path);
+	return (NULL);
+}
+
+/**
+ * exec_command - function that executes a command
+ * @cmd: the command
+ * @cmd_path: the path of the command
+ * @args: the arguments
+ */
+void exec_command(char *cmd, char *cmd_path, char *args[])
+{
+	int status;
+	pid_t pid = fork();
+
+	if (pid == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		execv(cmd_path, args);
+		perror("execv");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
+	}
 }
