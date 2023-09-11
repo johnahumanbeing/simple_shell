@@ -27,7 +27,7 @@ char *get_path(char *cmd)
 	return (NULL);
 }
 
-int main()
+int main(void)
 {
 	char *line = NULL;
 	size_t line_size = 0;
@@ -47,7 +47,7 @@ int main()
 		int num_args = 0;
 		char *arg = strtok(line, " \n");
 
-		while (arg != NULL && num_args < MAX_ARGS -1)
+		while (arg != NULL && num_args < MAX_ARGS - 1)
 		{
 			args[num_args++] = arg;
 			arg = strtok(NULL, " \n");

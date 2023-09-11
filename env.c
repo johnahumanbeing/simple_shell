@@ -28,7 +28,7 @@ char *get_path(char *cmd)
 	return (NULL);
 }
 
-void print_env()
+print_env() void
 {
 	char **env = environ;
 
@@ -39,7 +39,7 @@ void print_env()
 	}
 }
 
-int main()
+int main(void)
 {
 	char *line = NULL;
 	size_t line_size = 0;

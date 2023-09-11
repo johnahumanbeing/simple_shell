@@ -31,7 +31,7 @@ int main(void)
 			break;
 		}
 
-		buffer[chars -1] = '\0';
+		buffer[chars - 1] = '\0';
 
 		if (access(buffer, F_OK) == 0)
 		{
@@ -39,7 +39,8 @@ int main(void)
 
 			if (pid == 0)
 			{
-				char *args[] = {buffer,NULL};
+				char *args[] = {buffer, NULL};
+
 				execve(args[0], args, NULL);
 			}
 			else
@@ -49,7 +50,8 @@ int main(void)
 		}
 		else
 		{
-			printf("%s: command not found\n", buffer);
+			printf(":
+					command not found\n", buffer);
 		}
 	}
 
