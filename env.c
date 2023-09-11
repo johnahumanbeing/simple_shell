@@ -6,7 +6,7 @@
 #define MAX_ARGS 64
 #define MAX_PATH 1024
 
-extern char **environ;
+char **environ;
 
 char *get_path(char *cmd)
 {
@@ -28,6 +28,9 @@ char *get_path(char *cmd)
 	return (NULL);
 }
 
+/**
+ * print_env - function that prints the environment variables
+ */
 print_env() void
 {
 	char **env = environ;
@@ -39,23 +42,45 @@ print_env() void
 	}
 }
 
+void exec_command(char *cmd, char *cmd_path, char *args[])
+{
+	int status;
+	pid_t pid = fork();
+
+	if (pid == -1)
+	{
+		perror("fork");
+		exit(EXIT_FAILURE);
+	}
+	else if (pid == 0)
+	{
+		execv(cmd_path, args);
+		perror("execv");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
+	}
+	free(cmd_path);
+}
+
 int main(void)
 {
 	char *line = NULL;
 	size_t line_size = 0;
 	char *args[MAX_ARGS];
-	int status;
-
+	
 	while (1)
 	{
 		printf("$ ");
 		fflush(stdout);
-
+		
 		if (getline(&line, &line_size, stdin) == -1)
 		{
 			break;
 		}
-
+		
 		int num_args = 0;
 		char *arg = strtok(line, " \n");
 
@@ -87,24 +112,7 @@ int main(void)
 			continue;
 		}
 
-		pid_t pid = fork();
-
-		if (pid == -1)
-		{
-			perror("fork");
-			exit(EXIT_FAILURE);
-		}
-		else if (pid == 0)
-		{
-			execv(cmd_path, args);
-			perror("execv");
-			exit(EXIT_FAILURE);
-		}
-		else
-		{
-			wait(&status);
-		}
-		free(cmd_path);
+		exec_command(cmd, cmd_path, args);
 	}
 
 	free(line);
