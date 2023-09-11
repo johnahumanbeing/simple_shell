@@ -6,6 +6,70 @@
 #define MAX_ARGS 64
 #define MAX_PATH 1024
 
+char *get_path(char *cmd);
+void print_env(void);
+void exec_command(char *cmd, char *cmd_path, char *args[]);
+
+/**
+ * main - the entry point
+ * Return: nothing
+ */
+int main(void)
+{
+	char **environ;
+
+	char *line = NULL;
+	size_t line_size = 0;
+	char *args[MAX_ARGS];
+
+	while (1)
+	{
+		printf("$ ");
+		fflush(stdout);
+
+		if (getline(&line, &line_size, stdin) == -1)
+		{
+			break;
+		}
+
+		int num_args = 0;
+		char *arg = strtok(line, " \n");
+
+		while (arg != NULL && num_args < MAX_ARGS - 1)
+		{
+			args[num_args++] = arg;
+			arg = strtok(NULL, " \n");
+		}
+		args[num_args] = NULL;
+
+		if (num_args == 0)
+		{
+			continue;
+		}
+
+		char *cmd = args[0];
+
+		if (strcmp(cmd, "exit") == 0)
+		{
+			print_env();
+			continue;
+		}
+
+		char *cmd_path = get_path(cmd);
+
+		if (cmd_path == NULL)
+		{
+			printf("%s: command not found\n", cmd);
+			continue;
+		}
+
+		exec_command(cmd, cmd_path, args);
+	}
+
+	free(line);
+	return (0);
+}
+
 /**
  * get_path - function that gets the full path of a command
  * @cmd: the command
@@ -72,64 +136,4 @@ void exec_command(char *cmd, char *cmd_path, char *args[])
 		wait(&status);
 	}
 	free(cmd_path);
-}
-
-/**
- * main - works on the eviron variable
- * Return: nothing
- */
-int main(void)
-{
-	char **environ;
-
-	char *line = NULL;
-	size_t line_size = 0;
-	char *args[MAX_ARGS];
-
-	while (1)
-	{
-		printf("$ ");
-		fflush(stdout);
-
-		if (getline(&line, &line_size, stdin) == -1)
-		{
-			break;
-		}
-
-		int num_args = 0;
-		char *arg = strtok(line, " \n");
-
-		while (arg != NULL && num_args < MAX_ARGS - 1)
-		{
-			args[num_args++] = arg;
-			arg = strtok(NULL, " \n");
-		}
-		args[num_args] = NULL;
-
-		if (num_args == 0)
-		{
-			continue;
-		}
-
-		char *cmd = args[0];
-
-		if (strcmp(cmd, "exit") == 0)
-		{
-			print_env();
-			continue;
-		}
-
-		char *cmd_path = get_path(cmd);
-
-		if (cmd_path == NULL)
-		{
-			printf("%s: command not found\n", cmd);
-			continue;
-		}
-
-		exec_command(cmd, cmd_path, args);
-	}
-
-	free(line);
-	return (0);
 }
