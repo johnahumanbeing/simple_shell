@@ -33,12 +33,12 @@ char *get_path(char *cmd)
 }
 
 /**
- * exec_command - functions that executes a command
- * @cmd: the command
+ * exec_command - forks and executes a command
  * @cmd_path: the path of the command
  * @args: the arguments
+ * Return: zero
  */
-void exec_command(char *cmd, char *cmd_path, char *args[])
+int exec_command(char *cmd_path, char *args[])
 {
 	int status;
 	pid_t pid = fork();
@@ -48,11 +48,17 @@ void exec_command(char *cmd, char *cmd_path, char *args[])
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
+	else if (pid == 0)
+	{
+		execv(cmd_path, args);
+		perror("execv");
+		exit(EXIT_FAILURE);
+	}
 	else
 	{
 		wait(&status);
 	}
-	free(cmd_path);
+	return (0);
 }
 
 /**
@@ -101,7 +107,8 @@ int main(void)
 			continue;
 		}
 
-		exec_command(cmd, cmd_path, args);
+		exec_command(cmd_path, args);
+		free(cmd_path);
 	}
 	free(line);
 	return (0);
