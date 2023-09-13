@@ -13,6 +13,7 @@ int main(void)
 	char *buffer;
 	size_t bufsize = BUFFER_SIZE;
 	int chars;
+	char *token;
 
 	buffer = (char *)malloc(bufsize * sizeof(char));
 
@@ -34,7 +35,7 @@ int main(void)
 		}
 
 		buffer[chars - 1] = '\0';
-		char *token = strtok(buffer, " ");
+		token = strtok(buffer, " ");
 
 		while (token != NULL)
 		{
