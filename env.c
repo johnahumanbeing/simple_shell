@@ -103,7 +103,7 @@ char *get_path(char *cmd)
 /**
  * print_env - function that prints the environment variables
  */
-print_env()void
+void print_env(void)
 {
 	char **env = environ;
 
