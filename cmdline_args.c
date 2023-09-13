@@ -14,7 +14,7 @@ int main(void)
 	size_t bufsize = BUFFER_SIZE;
 	int chars;
 
-	buffer = (char *)mallloc(bufsize * sizeof(char));
+	buffer = (char *)malloc(bufsize * sizeof(char));
 
 	if (buffer == NULL)
 	{
