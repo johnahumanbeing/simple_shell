@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #define MAX_ARGS 64
 #define MAX_PATH 1024
@@ -15,52 +16,54 @@ void exec_command(char *cmd, char *cmd_path, char *args[]);
  */
 int main(void)
 {
-	char *line = NULL;
-	size_t line_size = 0;
-	char *args[MAX_ARGS];
-	int status;
+    char *line = NULL;
+    size_t line_size = 0;
+    char *args[MAX_ARGS];
+    int num_args;
+    char *arg;
+    char *cmd;
 
-	while (1)
-	{
-		printf("$ ");
-		fflush(stdout);
+    while (1)
+    {
+        printf("$ ");
+        fflush(stdout);
 
-		if (getline(&line, &line_size, stdin) == -1)
-		{
-			break;
-		}
+        if (getline(&line, &line_size, stdin) == -1)
+        {
+            break;
+        }
 
-		int num_args = 0;
-		char *arg = strtok(line, " \n");
+        num_args = 0;
+        arg = strtok(line, " \n");
 
-		while (arg != NULL && num_args < MAX_ARGS - 1)
-		{
-			args[num_args++] = arg;
-			arg = strtok(NULL, " \n");
-		}
+        while (arg != NULL && num_args < MAX_ARGS - 1)
+        {
+            args[num_args++] = arg;
+            arg = strtok(NULL, " \n");
+        }
 
-		args[num_args] = NULL;
+        args[num_args] = NULL;
 
-		if (num_args == 0)
-		{
-			continue;
-		}
+        if (num_args == 0)
+        {
+            continue;
+        }
 
-		char *cmd = args[0];
-		char *cmd_path = get_path(cmd);
+        cmd = args[0];
+        char *cmd_path = get_path(cmd);
 
-		if (cmd_path == NULL)
-		{
-			printf("%s: command not found\n", cmd);
-			continue;
-		}
+        if (cmd_path == NULL)
+        {
+            printf("%s: command not found\n", cmd);
+            continue;
+        }
 
-		exec_command(cmd, cmd_path, args);
-		free(cmd_path);
-	}
+        exec_command(cmd, cmd_path, args);
+        free(cmd_path);
+    }
 
-	free(line);
-	return (0);
+    free(line);
+    return (0);
 }
 
 /**
@@ -70,24 +73,24 @@ int main(void)
  */
 char *get_path(char *cmd)
 {
-	char *path = getenv("PATH");
-	char *dir = strtok(path, ":");
-	char *full_path = malloc(MAX_PATH);
+    char *path = getenv("PATH");
+    char *dir = strtok(path, ":");
+    char *full_path = malloc(MAX_PATH);
 
-	while (dir != NULL)
-	{
-		snprintf(full_path, MAX_PATH, "%s/%s", dir, cmd);
+    while (dir != NULL)
+    {
+        snprintf(full_path, MAX_PATH, "%s/%s", dir, cmd);
 
-		if (access(full_path, X_OK) == 0)
-		{
-			return (full_path);
-		}
+        if (access(full_path, X_OK) == 0)
+        {
+            return (full_path);
+        }
 
-		dir = strtok(NULL, ":");
-	}
+        dir = strtok(NULL, ":");
+    }
 
-	free(full_path);
-	return (NULL);
+    free(full_path);
+    return (NULL);
 }
 
 /**
@@ -98,22 +101,22 @@ char *get_path(char *cmd)
  */
 void exec_command(char *cmd, char *cmd_path, char *args[])
 {
-	int status;
-	pid_t pid = fork();
+    pid_t pid = fork();
 
-	if (pid == -1)
-	{
-		perror("fork");
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
-	{
-		execv(cmd_path, args);
-		perror("execv");
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		wait(&status);
-	}
+    if (pid == -1)
+    {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+    else if (pid == 0)
+    {
+        execv(cmd_path, args);
+        perror("execv");
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        int status;
+        wait(&status);
+    }
 }
