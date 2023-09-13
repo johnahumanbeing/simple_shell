@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
+#include "env.h"
 
 #define MAX_ARGS 64
 #define MAX_PATH 1024
 
 char *get_path(char *cmd);
 void print_env(void);
-void exec_command(char *cmd, char *cmd_path, char *args[]);
+void exec_command(char *cmd_path, char *args[]);
 
 /**
  * main - the entry point
@@ -16,8 +18,6 @@ void exec_command(char *cmd, char *cmd_path, char *args[]);
  */
 int main(void)
 {
-	char **environ;
-
 	char *line = NULL;
 	size_t line_size = 0;
 	char *args[MAX_ARGS];
@@ -68,7 +68,7 @@ int main(void)
 			continue;
 		}
 
-		exec_command(cmd, cmd_path, args);
+		exec_command(cmd_path, args);
 	}
 
 	free(line);
@@ -116,11 +116,10 @@ void print_env(void)
 
 /**
  * exec_command - function that execues a command
- * @cmd: the command
  * @cmd_path: the path of the command
  * @args: the arguments
  */
-void exec_command(char *cmd, char *cmd_path, char *args[])
+void exec_command(char *cmd_path, char *args[])
 {
 	int status;
 	pid_t pid = fork();
