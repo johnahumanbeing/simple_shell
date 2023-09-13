@@ -50,3 +50,43 @@ void execute_prompt(const char *comnd)
     }
     
 }
+
+
+/**
+ * exec_command - function that executes the provided command
+ * @command: the command
+ */
+
+void exec_command(char *command)
+{
+	if (access(buffer, F_OK) == 0)
+	{
+		pid_t pid = fork();
+
+		if (pid == 0)
+		{
+			char *args[] = {buffer, NULL};
+
+			execve(args[0], args, NULL);
+		}
+		else
+		{
+			wait(NULL);
+		}
+	}
+	else
+	{
+		printf("%s: command not found\n", buffer);
+	}
+}
+
+/**
+ * handle_input - function that handles user input
+ * and calls the exec_command to execute
+ * @buffer: the buffer
+ */
+
+void handle_input(char *buffer)
+{
+	exec_command(buffer);
+}
