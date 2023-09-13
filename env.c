@@ -22,6 +22,11 @@ int main(void)
 	size_t line_size = 0;
 	char *args[MAX_ARGS];
 
+	int num_args;
+	char *cmd;
+	char *cmd_path;
+	char *arg;
+
 	while (1)
 	{
 		printf("$ ");
@@ -32,8 +37,8 @@ int main(void)
 			break;
 		}
 
-		int num_args = 0;
-		char *arg = strtok(line, " \n");
+		num_args = 0;
+		arg = strtok(line, " \n");
 
 		while (arg != NULL && num_args < MAX_ARGS - 1)
 		{
@@ -47,7 +52,7 @@ int main(void)
 			continue;
 		}
 
-		char *cmd = args[0];
+		cmd = args[0];
 
 		if (strcmp(cmd, "exit") == 0)
 		{
@@ -55,7 +60,7 @@ int main(void)
 			continue;
 		}
 
-		char *cmd_path = get_path(cmd);
+		cmd_path = get_path(cmd);
 
 		if (cmd_path == NULL)
 		{
