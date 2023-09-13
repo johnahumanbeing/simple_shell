@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 #define MAX_ARGS 64
 #define MAX_PATH 1024
@@ -71,15 +72,17 @@ int exec_command(char *cmd_path, char *args[])
 int parse_line(char *line, char *args[])
 {
 	int num_args = 0;
-	char *arg = strtok(line, " \n");
+	char *arg;
 
+	arg = strtok(line, " \n");
 	while (arg != NULL && num_args < MAX_ARGS - 1)
 	{
-		args[num_args++] arg;
+		args[num_args++] = arg;
 		arg = strtok(NULL, " \n");
 	}
 
 	args[num_args] = NULL;
+
 	return (num_args);
 }
 
@@ -92,7 +95,6 @@ int main(void)
 	char *line = NULL;
 	size_t line_size = 0;
 	char *args[MAX_ARGS];
-	int status;
 
 	while (1)
 	{
@@ -105,6 +107,7 @@ int main(void)
 		}
 
 		int num_args = parse_line(line, args);
+		int num_args;
 
 		if (num_args == 0)
 		{
