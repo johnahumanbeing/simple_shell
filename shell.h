@@ -14,6 +14,8 @@ int exit_handler(char *buff, char **list_cmd, char **cmd);
 int check_exit(char *buff);
 int *code_exiter();
 void code_exit_set(int code);
+int *hist_count();
+void line_cnt_updt(void);
 
 
 #endif
