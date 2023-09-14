@@ -16,6 +16,7 @@ int *code_exiter();
 void code_exit_set(int code);
 int *hist_count();
 void line_cnt_updt(void);
+void var_rep(char **cmd);
 
 
 #endif
