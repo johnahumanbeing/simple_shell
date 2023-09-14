@@ -1,41 +1,50 @@
 #include "shell.h"
 
+static char *MAIN_ARG;
+
 /**
  * main - entry point
+ * @ac: argument count
+ * @av: argument vector
  * Return: 0 for success
 */
 
-int main(void)
+int main(int ac, char *av)
 {
-	int i;
-	char command[MAX_COMMAND_LENGTH];
-	char *args[MAX_COMMAND_LENGTH];
+	int rd, execute_file = 0;
+	char *buff = NULL;
+	size_t buff_l = 0;
+	int fd;
+
+	MAIN_ARG = av[0];
+
+	sign(SINGINT, singintHandle);
+	fd = handle_args(ac, av, &execute_file);
 
 	while (1)
 	{
-		int length = prompt_read("$", command, sizeof(command));
-
-		if (length == -1)
+		if (isatty(STDIN_FILENO) == 1 && execute_file == 0)
 		{
-			terminator();
+			write(STDOUT_FILENO, "$ ", 2);
 		}
+		rd = getline(&buff, &buff_l, stdin);
 
-		if (strcmp(command, "exit") == 0)
+		if (rd == EOF)
 		{
-			terminator();
+			free(buff);
+			exit(*code_exiter());
 		}
+		buff = cmnt_handle(buff);
+		strtok_(buff, "\n");
+		opp_handler(buff, rd, av[0]);
+	}
 
-	parse_command(command, args,sizeof(args) / sizeof(args[0]));
+	free(buff);
 
-	if (args[0] != NULL)
+	if (execute_file)
 	{
-		for (i = 0; args[i] != NULL; i++)
-		{
-			printf("Argument %d: %s\n", i, args[i]);
-		}
-		
+		close(fd);
 	}
+	return(*code_exiter());
 	
-	}
-	return (0);
 }
