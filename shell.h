@@ -7,11 +7,9 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#define MAX_COMMAND_LENGTH 1024
+int handle_args(int ac, char **av, int *execute_file);
+void singintHandler(int __attribute__((unused))sig_num);
+char *get_av_1(void);
 
-int prompt_read(const char *prompt, char *command, size_t max_length);
-void terminator(void);
-void parse_command(const char *command, char **args, size_t max_args);
-void executer(char **args);
 
 #endif
