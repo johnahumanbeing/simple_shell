@@ -58,5 +58,8 @@ int _unsetenv(char *name);
 int _setenv(char *name, char *value);
 void env(void);
 int _puts(char *str);
+int get_env_postn(char *name);
+int var_name_is_valid(char *name);
+int env_name_verify(char *name);
 
 #endif
