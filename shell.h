@@ -28,5 +28,10 @@ list_t **last_cmd_addr();
 list_t **get_hist_addr();
 void *_realloc(void *ptr, unsigned int old_sz, unsigned int new_sz);
 void write_hist(void);
+int _alias(char **commands);
+int _cd(char *path);
+int _unsetenv(char *name);
+int _setenv(char *name, char *value);
+void env(void);
 
 #endif
