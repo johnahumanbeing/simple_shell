@@ -61,5 +61,11 @@ int _puts(char *str);
 int get_env_postn(char *name);
 int var_name_is_valid(char *name);
 int env_name_verify(char *name);
+char *path_finder(char *dir, char *filename);
+int PATH_Handler(char **commands);
+int args_counter(char *str_input, char *delimiter);
+char **input_parser(char *str_input, char *delimiter);
+void print_builtin_error(char *msg, char *arg);
+void dispatch_error(char *msg);
 
 #endif
