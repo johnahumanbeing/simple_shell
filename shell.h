@@ -6,6 +6,30 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <string.h>
+#include <errno.h>
+#include <stddef.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <signal.h>
+
+/**
+ * struct list_s - singly linked list
+ * @str: string - (malloc'ed string)
+ * @len: length of the string
+ * @next: points to the next node
+ *
+ * Description: singly linked list node structure
+ * for Holberton project
+ */
+typedef struct list_s
+{
+	char *str;
+	unsigned int len;
+	struct list_s *next;
+} list_t;
 
 int handle_args(int ac, char **av, int *execute_file);
 void singintHandler(int __attribute__((unused))sig_num);
@@ -33,5 +57,6 @@ int _cd(char *path);
 int _unsetenv(char *name);
 int _setenv(char *name, char *value);
 void env(void);
+int _puts(char *str);
 
 #endif
