@@ -71,5 +71,6 @@ int other_set_inbuilts(char **commands);
 int inbuilt_envar(char **commands);
 int inbuilt_handler(char **commands);
 char *comment_handler(char *str_input);
+int enter_hander(char **commands);
 
 #endif
