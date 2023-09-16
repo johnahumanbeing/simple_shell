@@ -67,5 +67,8 @@ int args_counter(char *str_input, char *delimiter);
 char **input_parser(char *str_input, char *delimiter);
 void print_builtin_error(char *msg, char *arg);
 void dispatch_error(char *msg);
+int other_set_inbuilts(char **commands);
+int inbuilt_envar(char **commands);
+int inbuilt_handler(char **commands);
 
 #endif
