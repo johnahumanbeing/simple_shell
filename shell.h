@@ -70,5 +70,6 @@ void dispatch_error(char *msg);
 int other_set_inbuilts(char **commands);
 int inbuilt_envar(char **commands);
 int inbuilt_handler(char **commands);
+char *comment_handler(char *str_input);
 
 #endif
