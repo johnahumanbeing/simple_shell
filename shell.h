@@ -86,5 +86,12 @@ void free_dbl_ptr(char **dbl_ptr);
 void free_allocs(char *buff, char **cmds_list, char **commands, int flags);
 void build_dynamic_environ(void);
 void free_dynamic_environ(void);
+char *join_str(char const *s1, char const *s2);
+char *strsub_f(char const *s, unsigned int start, size_t len);
+void f_memdel(void **ap);
+void strdel_f(char **as);
+char *str_num(int num);
+char *str_scan(const char *s, int c);
+char *n_strcat(char *s1, const char *s2, size_t n);
 
 #endif
