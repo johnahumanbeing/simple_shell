@@ -66,7 +66,7 @@ void st_alias(char *alias_pair)
 				(curr->str)[first_eq] == '=')
 		{
 			free(curr->str);
-			curr->str = strdup(tmp_buff);
+			curr->str = str_dup(tmp_buff);
 			return;
 		}
 

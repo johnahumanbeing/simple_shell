@@ -21,7 +21,7 @@ int line_rd(const int fd, char **line)
 	{
 		buffer[rdr] = '\0';
 		if (!str[fd])
-			str[fd] = strdup(buffer);
+			str[fd] = str_dup(buffer);
 		else
 		{
 			tmp = join_str(str[fd], buffer);
@@ -54,7 +54,7 @@ int	line_rd_f(char **str, char **line, int fd)
 	*line = strsub_f(str[fd], 0, count);
 	if (str[fd][count] == '\n')
 	{
-		tmp = strdup(&str[fd][count + 1]);
+		tmp = str_dup(&str[fd][count + 1]);
 		free(str[fd]);
 		str[fd] = tmp;
 		if (str[fd][0] == '\0')

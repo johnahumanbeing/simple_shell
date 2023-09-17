@@ -36,7 +36,7 @@ void var_rep(char **cmd)
 		if (value_env != NULL)
 		{
 			free(cmd[i]);
-			cmd[i] = strdup(value_env);
+			cmd[i] = str_dup(value_env);
 		}
 	}
 }

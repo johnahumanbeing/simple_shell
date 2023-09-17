@@ -21,7 +21,7 @@ char **input_parser(char *str_input, char *delimiter)
 
 	args =  alloc_memry(sizeof(char *) * (args_count + 1));
 
-	str_copy = strdup(str_input);
+	str_copy = str_dup(str_input);
 	tkn_ptr = str_copy;
 	for (i = 0; i < args_count; i++)
 	{
@@ -90,7 +90,7 @@ int PATH_Handler(char **commands)
 	if (path_dirs == NULL)
 		return (127);
 
-	str_copy = strdup(path_dirs);
+	str_copy = str_dup(path_dirs);
 	tkn_ptr = str_copy;
 	while (1)
 	{
