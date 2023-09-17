@@ -6,7 +6,7 @@
  *
  * Return: 1 if no command was entered(just spaces and ENTER), 0 otherwise
 */
-int enter_hander(char **commands)
+int enter_handler(char **commands)
 {
 	if (commands[0] == NULL || strcmp(commands[0], "\n") == 0)
 		return (1);
