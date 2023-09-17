@@ -71,6 +71,20 @@ int other_set_inbuilts(char **commands);
 int inbuilt_envar(char **commands);
 int inbuilt_handler(char **commands);
 char *comment_handler(char *str_input);
-int enter_hander(char **commands);
+int enter_handler(char **commands);
+void semicolon_and_opr(char *buff, int read, char *first_av);
+void or_handler(char *buff_semicolon, int read, char *first_av);
+int and_handler(char *buff_or, int read, char *first_av, int prev_flag);
+int execute_commands(char *buff, char **cmds_list, char *cmd, int __attribute__((unused))read, char *first_av);
+void handle_cmnd_not_found(char *buff, char **cmds_list, char **commands, char *first_av);
+size_t print_list(const list_t *h);
+list_t *end_node_add(list_t **head, const char *str);
+void free_list(list_t *head);
+void *allc_memry(unsigned int bytes);
+char *str_dup(char *str);
+void free_dbl_ptr(char **dbl_ptr);
+void free_allocs(char *buff, char **cmds_list, char **commands, int flags);
+void build_dynamic_environ(void);
+void free_dynamic_environ(void);
 
 #endif

@@ -74,8 +74,7 @@ int and_handler(char *buff_or, int read, char *first_av, int prev_flag)
  * @first_av: av[0]
  * Return: 0 on success
 */
-int execute_commands(char *buff, char **cmds_list,
-	char *cmd, int __attribute__((unused))read, char *first_av)
+int execute_commands(char *buff, char **cmds_list, char *cmd, int __attribute__((unused))read, char *first_av)
 {
 	char **commands;
 	int child_pid, _err = 0, flag = 0, *status = code_exiter();
@@ -122,8 +121,7 @@ int execute_commands(char *buff, char **cmds_list,
  * @commands: Array of strings
  * @first_av: First argument passed to the executable
 */
-void handle_cmnd_not_found(char *buff, char **cmds_list, char **commands,
-	char *first_av)
+void handle_cmnd_not_found(char *buff, char **cmds_list, char **commands, char *first_av)
 {
 	code_exit_set(127);
 	write(2, first_av, strlen(first_av));

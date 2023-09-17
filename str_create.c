@@ -68,7 +68,7 @@ void f_memdel(void **ap)
  * @as: array of strings
  * Return: void
  */
-void stdel_f(char **as)
+void strdel_f(char **as)
 {
 	f_memdel((void **)as);
 }
