@@ -32,6 +32,7 @@ int env_name_verify(char *name)
 int var_name_is_valid(char *name)
 {
 	int i;
+
 	for (i = 0; name[i] != '\0'; i++)
 		if (name[i] == '=')
 			return (0);
