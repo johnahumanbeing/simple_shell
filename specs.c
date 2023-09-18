@@ -11,7 +11,7 @@ void build_dynamic_environ(void)
 	while (__environ[count_envs] != NULL)
 		count_envs++;
 
-	new_environ = alloc_memry(sizeof(char *) * (count_envs + 1));
+	new_environ = allc_memry(sizeof(char *) * (count_envs + 1));
 	for (count_envs = 0;  __environ[count_envs] != NULL; count_envs++)
 		new_environ[count_envs] = str_dup(__environ[count_envs]);
 
