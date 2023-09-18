@@ -157,4 +157,6 @@ char *n_strcat(char *s1, const char *s2, size_t n);
 
 char *get_av_1(void);
 
+void aliases_handler(char **commands);
+
 #endif

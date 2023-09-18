@@ -82,11 +82,11 @@ int execute_commands(char *buff, char **cmds_list, char *cmd,
 	int child_pid, _err = 0, flag = 0, *status = code_exiter();
 
 	commands = input_parser(cmd, " ");
-	handle_var_replacement(commands);
+	var_rep(commands);
 	aliases_handler(commands);
 	/* Exit error, ENTER, and builtins */
 	if (exit_handler(buff, cmds_list, commands) == -1 ||
-			enter_hander(commands) == 1	||
+			enter_handler(commands) == 1	||
 			inbuilt_handler(commands) == 1)
 	{
 		free_dbl_ptr(commands);

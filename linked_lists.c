@@ -13,7 +13,7 @@ size_t print_list(const list_t *h)
 	{
 		if (h->str)
 		{
-			_puts(num_to_str(h->len));
+			_puts(str_num(h->len));
 			_puts(" ");
 			_puts(h->str);
 			_puts("\n");
@@ -41,7 +41,7 @@ list_t *end_node_add(list_t **head, const char *str)
 	if (end_node == NULL)
 		return (NULL);
 
-	end_node->str = str_dup(str);
+	end_node->str = strdup(str);
 	end_node->len = strlen(str);
 	end_node->next = NULL;
 

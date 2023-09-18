@@ -18,7 +18,7 @@ void line_cnt_updt(void)
 	if (getcwd(current_dir, 512) == NULL)
 		return;
 
-	Home = _getenv("HOME");
+	Home = env_get("HOME");
 	if (Home == NULL)
 		Home = "";
 

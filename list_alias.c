@@ -146,7 +146,7 @@ void aliases_handler(char **commands)
 			strncpy(tmp_buff, &str[cmd_len + 2], alias_len - 1);
 			tmp_buff[alias_len] = '\0';
 			free(commands[0]);
-			commands[0] = duplicate_string(tmp_buff);
+			commands[0] = str_dup(tmp_buff);
 			break;
 		}
 	}
