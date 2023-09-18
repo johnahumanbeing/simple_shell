@@ -38,7 +38,7 @@ typedef struct list_s
 
 int handle_args(int ac, char **av, int *execute_file);
 
-void singintHandler(int __attribute__((unused))sig_num);
+void sigintHandler(int __attribute__((unused))sig_num);
 
 char *get_av_1(void);
 
