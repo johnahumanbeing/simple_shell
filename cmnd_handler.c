@@ -65,7 +65,8 @@ int args_counter(char *str_input, char *delimiter)
 }
 
 /**
- * PATH_Handler - Checks if the command to execute could be found in PATH's dirs
+ * PATH_Handler - Checks if the command to execute could
+ *  be found in PATH's dirs
  * @commands: Array of strings containing the command and args
  * Return: flag 0 if is succes else -1 if error
 */
