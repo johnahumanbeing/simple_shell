@@ -45,6 +45,6 @@ int main(int ac, char *av)
 	{
 		close(fd);
 	}
-	return(*code_exiter());
-	
+	return (*code_exiter());
+
 }
