@@ -9,6 +9,7 @@
 char *env_get(char *name)
 {
 	int i;
+	/** checking the environment variable **/
 
 	for (i = 0; __environ[i] != NULL; i++)
 		if (strncmp(__environ[i], name, strlen(name)) == 0)
