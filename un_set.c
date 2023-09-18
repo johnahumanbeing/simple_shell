@@ -147,7 +147,7 @@ int _alias(char **commands)
 	int status = 0;
 	list_t *curr;
 	list_t *out_head = NULL;
-	list_t **alias_addrs = get_alias_head();
+	list_t **alias_addrs = head_alias_get();
 
 	/* the alias args starts from position 1 */
 	if (commands[1] == NULL)

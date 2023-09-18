@@ -66,5 +66,5 @@ void allc_free(char *buff, char **cmds_list, char **commands, int flags)
 		free_dbl_ptr(commands);
 
 	free_list(*(head_alias_get()));
-	free_history();
+	free_hist();
 }
