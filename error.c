@@ -11,9 +11,9 @@ void dispatch_error(char *msg)
 }
 
 /**
- * print_builtin_error - Prints error for buitin function
+ * print_builtin_error - Prints error for builtin function
  * @msg: Error message
- * @arg: Argument passed to builtin
+ * @arg: Argument passed to builtin function
 */
 void print_builtin_error(char *msg, char *arg)
 {
