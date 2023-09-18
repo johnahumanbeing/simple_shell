@@ -10,27 +10,27 @@
 
 int handle_args(int ac, char **av, int *execute_file)
 {
-    int fd = STDIN_FILENO;
-    char *msg_err = "Error: more than one argument\n";
-    
-    if (ac > 2)
-    {
-        write(STDERR_FILENO, msg_err, strlen(msg_err));
-        exit(1);
-    }
+	int fd = STDIN_FILENO;
+	char *msg_err = "Error: more than one argument\n";
 
-    if (ac == 2)
-    {
-        fd = open(av[1], O_RDONLY);
-        *execute_file = 1;
-    }
+	if (ac > 2)
+	{
+		write(STDERR_FILENO, msg_err, strlen(msg_err));
+		exit(1);
+	}
 
-    if (fd == - 1)
-    {
-        perror(av[-0]);
-        exit(1);
-    }
-    return(fd);
+	if (ac == 2)
+	{
+		fd = open(av[1], O_RDONLY);
+		*execute_file = 1;
+	}
+
+	if (fd == - 1)
+	{
+		perror(av[-0]);
+		exit(1);
+	}
+	return(fd);
 }
 
 /**
