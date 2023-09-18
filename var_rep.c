@@ -2,6 +2,7 @@
 
 /**
  * var_rep - Handles '$'
+ * @cmd: the commands
  * @commands: Array of commands
 */
 
