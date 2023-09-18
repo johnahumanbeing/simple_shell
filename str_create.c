@@ -13,13 +13,13 @@ char *join_str(char const *s1, char const *s2)
 
 	if (!s1 || !s2)
 		return (NULL);
-	l3 = _strlen(s1) + _strlen(s2);
+	l3 = strlen(s1) + strlen(s2);
 	s3 = malloc(l3 + 1);
 	if (s3 == NULL)
 		return (NULL);
 	s3[0] = '\0';
-	_strcat(s3, s1);
-	_strcat(s3, s2);
+	strcat(s3, s1);
+	strcat(s3, s2);
 	s3[l3] = '\0';
 	return (s3);
 }
