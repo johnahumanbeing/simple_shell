@@ -58,13 +58,13 @@ void free_dbl_ptr(char **dbl_ptr)
 */
 void allc_free(char *buff, char **cmds_list, char **commands, int flags)
 {
-	if (flags & F_BUFF)
+	if (flags & FL_BUFF)
 		free(buff);
 	if (flags & F_CMD_L)
 		free_dbl_ptr(cmds_list);
-	if (flags & F_CMDS)
+	if (flags & FL_CMDS)
 		free_dbl_ptr(commands);
 
-	free_list(*(get_alias_head()));
+	free_list(*(head_alias_get()));
 	free_history();
 }

@@ -96,7 +96,7 @@ int execute_commands(char *buff, char **cmds_list, char *cmd,
 	child_pid = fork();/* Fork parent process to execute the command */
 	if (child_pid == -1)
 	{
-		allc_free(buff, cmds_list, commands, F_BUFF | F_CMD_L | F_CMDS);
+		allc_free(buff, cmds_list, commands, FL_BUFF | F_CMD_L | FL_CMDS);
 		dispatch_error(first_av);
 	}
 	else if (child_pid == 0)
@@ -105,7 +105,7 @@ int execute_commands(char *buff, char **cmds_list, char *cmd,
 		execve(commands[0], commands, __environ);
 		if (_err != 0)
 			handle_cmnd_not_found(buff, cmds_list, commands, first_av);
-		allc_free(buff, cmds_list, commands, F_BUFF | F_CMD_L | F_CMDS);
+		allc_free(buff, cmds_list, commands, FL_BUFF | F_CMD_L | FL_CMDS);
 		dispatch_error(first_av);
 	}
 	wait(status);
@@ -131,6 +131,6 @@ void handle_cmnd_not_found(char *buff, char **cmds_list,
 	write(2, ": 1: ", 5);
 	write(2, commands[0], _strlen(commands[0]));
 	write(2, ": not found\n", 12);
-	allc_free(buff, cmds_list, commands, F_BUFF | F_CMD_L | F_CMDS);
+	allc_free(buff, cmds_list, commands, FL_BUFF | F_CMD_L | FL_CMDS);
 	exit(127);
 }

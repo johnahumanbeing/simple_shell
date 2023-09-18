@@ -15,6 +15,11 @@
 #include <dirent.h>
 #include <signal.h>
 
+/* FLAGS */
+#define FL_BUFF 1
+#define F_CMD_L 2
+#define FL_CMDS 4
+
 /**
  * struct list_s - singly linked list
  * @str: string - (malloc'ed string)
