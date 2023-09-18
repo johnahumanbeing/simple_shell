@@ -50,13 +50,13 @@ void free_dbl_ptr(char **dbl_ptr)
 }
 
 /**
- * free_allocs - Frees allocated memory
+ * all_free - Frees allocated memory
  * @buff: Main buffer
  * @cmds_list: List of commands
  * @commands: Command as an array of arguments
  * @flags: Number indicating which memory to free
 */
-void free_allocs(char *buff, char **cmds_list, char **commands, int flags)
+void allc_free(char *buff, char **cmds_list, char **commands, int flags)
 {
 	if (flags & F_BUFF)
 		free(buff);

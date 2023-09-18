@@ -131,6 +131,6 @@ void handle_cmnd_not_found(char *buff, char **cmds_list,
 	write(2, ": 1: ", 5);
 	write(2, commands[0], _strlen(commands[0]));
 	write(2, ": not found\n", 12);
-	free_allocs(buff, cmds_list, commands, F_BUFF | F_CMD_L | F_CMDS);
+	allc_free(buff, cmds_list, commands, F_BUFF | F_CMD_L | F_CMDS);
 	exit(127);
 }

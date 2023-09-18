@@ -159,4 +159,6 @@ char *get_av_1(void);
 
 void aliases_handler(char **commands);
 
+void allc_free(char *buff, char **cmds_list, char **commands, int flags);
+
 #endif
