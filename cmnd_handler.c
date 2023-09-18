@@ -17,9 +17,9 @@ char **input_parser(char *str_input, char *delimiter)
 	if (str_input == NULL)
 		dispatch_error("Error while parsing the command\n");
 
-	args_count = count_args(str_input, delimiter);
+	args_count = args_counter(str_input, delimiter);
 
-	args =  alloc_memry(sizeof(char *) * (args_count + 1));
+	args =  allc_memry(sizeof(char *) * (args_count + 1));
 
 	str_copy = str_dup(str_input);
 	tkn_ptr = str_copy;
@@ -29,7 +29,7 @@ char **input_parser(char *str_input, char *delimiter)
 		if (token == NULL)
 			break;
 		tkn_ptr = NULL;
-		args[i] = duplicate_string(token);
+		args[i] = str_dup(token);
 	}
 
 	args[i] = NULL;
@@ -50,7 +50,7 @@ int args_counter(char *str_input, char *delimiter)
 {
 	char *tkn, *tkn_ptr;
 	int count = 0;
-	char *str_copy = duplicate_string(str_input);
+	char *str_copy = str_dup(str_input);
 
 	tkn_ptr = str_copy;
 	while ((tkn = strtok(tkn_ptr, delimiter)) != NULL)
