@@ -72,6 +72,7 @@ int and_handler(char *buff_or, int read, char *first_av, int prev_flag)
  * @cmd: Single command as a string
  * @read: return of read (open with getline)
  * @first_av: av[0]
+ * @__attribute__: the attribute function
  * Return: 0 on success
 */
 int execute_commands(char *buff, char **cmds_list, char *cmd,
