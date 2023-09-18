@@ -74,7 +74,7 @@ void hist_handler(char *buff)
 }
 
 /**
- * free_history - Frees the memory used by history lists
+ * free_hist - Frees the memory used by history lists
 */
 void free_hist(void)
 {
