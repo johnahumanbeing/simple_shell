@@ -89,7 +89,7 @@ int handle_args(int ac, char **av, int *execute_file)
  * Return: is void
 */
 
-void singintHandler(int __attribute__((unused))sig_num)
+void sigintHandler(int __attribute__((unused))sig_num)
 {
 	write(STDIN_FILENO, "\n$ ", 3);
 }
