@@ -17,7 +17,7 @@ int exit_handler(char *buff, char **list_cmd, char **cmd)
 
 	if (cmd[1] == NULL)
 	{
-		hist_wr();
+		write_hist();
 	    allc_free(buff, list_cmd, cmd, FL_BUFF | FL_CMDS);
 		if (*code_exiter() == 127)
 			exit(2);
@@ -28,12 +28,12 @@ int exit_handler(char *buff, char **list_cmd, char **cmd)
 
 	if (status >= 0)
 	{
-		hist_wr();
+		write_hist();
 		allc_free(buff, list_cmd, cmd, FL_BUFF | FL_CMDS);
 		exit(status);
 	}
 
-	write_err("exit: Illegal number: ", cmd[1]);
+	print_builtin_error("exit: Illegal number: ", cmd[1]);
 	return (-1);
 }
 

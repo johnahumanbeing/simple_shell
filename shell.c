@@ -34,8 +34,8 @@ int main(int ac, char **av)
 			free(buff);
 			exit(*code_exiter());
 		}
-		buff = cmnt_handle(buff);
-		strtok_(buff, "\n");
+		buff = comment_handler(buff);
+		strtok(buff, "\n");
 		opp_handler(buff, rd, av[0]);
 	}
 

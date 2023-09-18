@@ -118,7 +118,7 @@ char *comment_handler(char *str_input);
 
 int enter_handler(char **commands);
 
-void semicolon_and_opr(char *buff, int read, char *first_av);
+void opp_handler(char *buff, int read, char *first_av);
 
 void or_handler(char *buff_semicolon, int read, char *first_av);
 

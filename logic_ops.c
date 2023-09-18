@@ -7,7 +7,7 @@
  * @first_av: av[0]
  * Return: 0 on success
 */
-void semicolon_and_opr(char *buff, int read, char *first_av)
+void opp_handler(char *buff, int read, char *first_av)
 {
 	char **cmds_list = NULL;
 
