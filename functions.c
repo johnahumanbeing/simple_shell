@@ -47,7 +47,7 @@ void singintHandler(int __attribute__((unused))sig_num)
 /**
  * get_first_av - Returns the first argument passed to main
  *
- * Return: Pointer to first arg passed to main
+ * Return: Pointer to first argument passed to main
 */
 char *get_av_1(void)
 {
