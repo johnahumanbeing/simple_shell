@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * input_parser - Buidls an array of strings as arguments
+ * input_parser - Builds an array of strings as the  arguments
  * @str_input: Command input given by the user
  * @delimiter: String od chars indicating the delimiters
  *
@@ -42,7 +42,7 @@ char **input_parser(char *str_input, char *delimiter)
 /**
  * args_counter - Counts the number of arguments in a command string
  * @str_input: Command as a string
- * @delimiter: Delimiter by wich to separate the args
+ * @delimiter: used to separate the arguments
  *
  * Return: Number of arguments present in str_input
 */
@@ -67,7 +67,7 @@ int args_counter(char *str_input, char *delimiter)
 /**
  * PATH_Handler - Checks if the command to execute could be found in PATH's dirs
  * @commands: Array of strings containing the command and args
- * Return: flag 0 if is succes; -1 if is error
+ * Return: flag 0 if is succes else -1 if error
 */
 
 int PATH_Handler(char **commands)
@@ -114,7 +114,7 @@ int PATH_Handler(char **commands)
 
 /**
  * path_finder - Creates a string representing a full path to file
- * @dir: String representing a directory path
+ * @dir: String representing the directory path
  * @filename: Name of the file we are looking for
  *
  * Return: String as a full path to "filename"
