@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * allocate_memory - Manages the allocation of memory
+ * allc_memry - Manages the allocation of memory
  * @bytes: Number representing the size in bytes to allocate
  *
  * Return: Pointer to the newly allocated memory
