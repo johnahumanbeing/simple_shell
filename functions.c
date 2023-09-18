@@ -36,6 +36,7 @@ int handle_args(int ac, char **av, int *execute_file)
 /**
  * singintHandle - Avoids current process to finish
  * @sig_num: Signal num
+ * @sigintHandler: handles the signals
  * Return: is void
 */
 
@@ -45,7 +46,7 @@ void singintHandler(int __attribute__((unused))sig_num)
 }
 
 /**
- * get_first_av - Returns the first argument passed to main
+ * get_first_av_1- Returns the first argument passed to main
  *
  * Return: Pointer to first argument passed to main
 */
