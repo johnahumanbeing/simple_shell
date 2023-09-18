@@ -129,7 +129,7 @@ void handle_cmnd_not_found(char *buff, char **cmds_list,
 	code_exit_set(127);
 	write(2, first_av, strlen(first_av));
 	write(2, ": 1: ", 5);
-	write(2, commands[0], _strlen(commands[0]));
+	write(2, commands[0], strlen(commands[0]));
 	write(2, ": not found\n", 12);
 	allc_free(buff, cmds_list, commands, FL_BUFF | F_CMD_L | FL_CMDS);
 	exit(127);
