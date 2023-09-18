@@ -168,4 +168,6 @@ void allc_free(char *buff, char **cmds_list, char **commands, int flags);
 
 list_t **head_alias_get();
 
+int args_alias_handle(char **commands, list_t **out_addrs);
+
 #endif

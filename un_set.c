@@ -32,7 +32,7 @@ int _setenv(char *name, char *value)
 	if (env_name_verify(name) == -1)
 		return (-1);
 
-	env_index = env_get_postn(name);
+	env_index = get_env_postn(name);
 	if (env_index == -1)
 	{
 		int env_count = 0;
@@ -56,7 +56,7 @@ int _setenv(char *name, char *value)
 	}
 
 	new_var_len = strlen(name) + strlen(value) + 2;
-	__environ[env_index] = alloc_memry(sizeof(char) * new_var_len);
+	__environ[env_index] = allc_memry(sizeof(char) * new_var_len);
 	strcpy(__environ[env_index], name);
 	strcat(__environ[env_index], "=");
 	strcat(__environ[env_index], value);
@@ -112,7 +112,7 @@ int _cd(char *path)
 		print_builtin_error("cd: OLDPWD not set", "");
 		return (-1);
 	}
-	path = duplicate_string(path);
+	path = str_dup(path);
 
 	oldpwd = getcwd(buff, 1024);
 	if (oldpwd == NULL)
@@ -161,7 +161,7 @@ int _alias(char **commands)
 		return (1);
 	}
 
-	status = handle_alias_args(commands, &out_head);
+	status = args_alias_handle(commands, &out_head);
 
 	for (curr = out_head; curr != NULL; curr = curr->next)
 	{
