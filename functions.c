@@ -25,12 +25,12 @@ int handle_args(int ac, char **av, int *execute_file)
 		*execute_file = 1;
 	}
 
-	if (fd == - 1)
+	if (fd == -1)
 	{
 		perror(av[-0]);
 		exit(1);
 	}
-	return(fd);
+	return (fd);
 }
 
 /**
