@@ -1,5 +1,7 @@
 #include "shell.h"
 
+static char *MAIN_ARG;
+
 /**
  * handle_args - check the number of arguments passed
  * @ac: argument count
@@ -46,7 +48,7 @@ void singintHandler(int __attribute__((unused))sig_num)
 }
 
 /**
- * get_first_av_1- Returns the first argument passed to main
+ * get_av_1- Returns the first argument passed to main
  *
  * Return: Pointer to first argument passed to main
 */

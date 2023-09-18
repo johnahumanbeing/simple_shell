@@ -126,7 +126,7 @@ char *path_finder(char *dir, char *filename)
 	int filename_len = strlen(filename);
 	char *path;
 
-	path = alloc_memry(sizeof(char *) * (dir_len + filename_len + 2));
+	path = allc_memry(sizeof(char *) * (dir_len + filename_len + 2));
 
 	strcpy(path, dir);
 	strcat(path, "/");

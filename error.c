@@ -18,7 +18,7 @@ void dispatch_error(char *msg)
 void print_builtin_error(char *msg, char *arg)
 {
 	int len = strlen(msg);
-	char *first_av = get_first_av();
+	char *first_av = get_av_1();
 
 	write(STDERR_FILENO, first_av, strlen(first_av));
 	write(STDERR_FILENO, ": 1: ", 5);

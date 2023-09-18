@@ -155,4 +155,6 @@ char *str_scan(const char *s, int c);
 
 char *n_strcat(char *s1, const char *s2, size_t n);
 
+char *get_av_1(void);
+
 #endif
