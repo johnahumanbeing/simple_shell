@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * semicolon_and_opr - Handle semicolon and logical op
+ * opp_handler - Handle semicolon and logical op
  * @buff: first buffer that functions read
  * @read: return of read (open with getline)
  * @first_av: av[0]
@@ -60,7 +60,6 @@ int and_handler(char *buff_or, int read, char *first_av, int prev_flag)
 									cmds_list_3[j], read, first_av);
 		prev_flag = flag;
 	}
-		/* record de last result , estudiar el caso 0 */
 	free_dbl_ptr(cmds_list_3);
 	return (flag);
 }
