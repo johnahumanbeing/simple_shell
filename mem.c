@@ -50,7 +50,7 @@ void free_dbl_ptr(char **dbl_ptr)
 }
 
 /**
- * all_free - Frees allocated memory
+ * allc_free - Frees allocated memory
  * @buff: Main buffer
  * @cmds_list: List of commands
  * @commands: Command as an array of arguments

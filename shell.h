@@ -124,9 +124,11 @@ void or_handler(char *buff_semicolon, int read, char *first_av);
 
 int and_handler(char *buff_or, int read, char *first_av, int prev_flag);
 
-int execute_commands(char *buff, char **cmds_list, char *cmd, int __attribute__((unused))read, char *first_av);
+int execute_commands(char *buff, char **cmds_list, char *cmd,
+					int __attribute__((unused))read, char *first_av);
 
-void handle_cmnd_not_found(char *buff, char **cmds_list, char **commands, char *first_av);
+void handle_cmnd_not_found(char *buff, char **cmds_list,
+							char **commands, char *first_av);
 
 size_t print_list(const list_t *h);
 

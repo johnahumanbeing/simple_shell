@@ -83,9 +83,8 @@ int handle_args(int ac, char **av, int *execute_file)
 }
 
 /**
- * singintHandle - Avoids current process to finish
+ * sigintHandler - Avoids current process to finish
  * @sig_num: Signal num
- * @sigintHandler: handles the signals
  * Return: is void
 */
 

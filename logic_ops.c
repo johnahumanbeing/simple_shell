@@ -74,8 +74,9 @@ int and_handler(char *buff_or, int read, char *first_av, int prev_flag)
  *  @__attribute__: the attribute function
  * Return: 0 on success
 */
-int execute_commands(char *buff, char **cmds_list, char *cmd,
-						int __attribute__((unused))read, char *first_av)
+
+int execute_commands(char *buff, char **cmds_list, char *cmd,\
+					int __attribute__((unused))read, char *first_av)
 {
 	char **commands;
 	int child_pid, _err = 0, flag = 0, *status = code_exiter();

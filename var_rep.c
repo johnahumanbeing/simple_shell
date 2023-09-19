@@ -3,7 +3,6 @@
 /**
  * var_rep - Handles '$'
  * @cmd: the commands
- * @commands: Array of commands
 */
 
 void var_rep(char **cmd)
